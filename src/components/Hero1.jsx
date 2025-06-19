@@ -350,35 +350,36 @@ export default function AvaLanding() {
           </p>
         </div>
 
-        {categories.map((category, index) => {
-          const Icon = category.icon;
-          const isHovered = hoveredCategory === category.id;
-          const isOtherHovered =
-            hoveredCategory && hoveredCategory !== category.id;
-          const intensity = 0.03 + index * 0.01;
-          const parallaxOffset = getParallaxOffset(
-            category.position,
-            intensity
-          );
-          const magneticOffset = isHovered
-            ? { x: parallaxOffset.x * 2, y: parallaxOffset.y * 2 }
-            : parallaxOffset;
+        <div className="hidden md:block">
+          {categories.map((category, index) => {
+            const Icon = category.icon;
+            const isHovered = hoveredCategory === category.id;
+            const isOtherHovered =
+              hoveredCategory && hoveredCategory !== category.id;
+            const intensity = 0.03 + index * 0.01;
+            const parallaxOffset = getParallaxOffset(
+              category.position,
+              intensity
+            );
+            const magneticOffset = isHovered
+              ? { x: parallaxOffset.x * 2, y: parallaxOffset.y * 2 }
+              : parallaxOffset;
 
-          return (
-            <div
-              key={category.id}
-              className="absolute cursor-pointer select-none z-20 transition-transform duration-75 ease-out"
-              style={{
-                ...category.position,
-                transform: `translate(${magneticOffset.x}px, ${magneticOffset.y}px)`,
-              }}
-              onMouseEnter={() => debouncedSetHoveredCategory(category.id)}
-              onMouseLeave={() => debouncedSetHoveredCategory(null)}
-              onClick={() => setSelectedCategory(category.id)}
-            >
-              {/* icon */}
+            return (
               <div
-                className={`
+                key={category.id}
+                className="absolute cursor-pointer select-none z-20 transition-transform duration-75 ease-out"
+                style={{
+                  ...category.position,
+                  transform: `translate(${magneticOffset.x}px, ${magneticOffset.y}px)`,
+                }}
+                onMouseEnter={() => debouncedSetHoveredCategory(category.id)}
+                onMouseLeave={() => debouncedSetHoveredCategory(null)}
+                onClick={() => setSelectedCategory(category.id)}
+              >
+                {/* icon */}
+                <div
+                  className={`
                 ${
                   category.color
                 } text-white rounded-full shadow-lg transform transition-all duration-300 ease-out relative overflow-hidden
@@ -393,62 +394,63 @@ export default function AvaLanding() {
                   isHovered ? "animate-pulse" : "animate-float"
                 } w-16 h-16 flex items-center justify-center
               `}
-              >
-                <Icon
-                  className={`w-7 h-7 transition-all duration-300 ${
-                    isHovered ? "scale-110" : ""
-                  }`}
-                />
-                {isHovered && (
-                  <div className="absolute inset-0 rounded-full bg-white/20 animate-ping pointer-events-none"></div>
-                )}
-                <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-200"></div>
-              </div>
-
-              <div
-                className={`text-center mt-3 transition-all duration-300 pointer-events-none ${
-                  isHovered
-                    ? "transform -translate-y-1"
-                    : isOtherHovered
-                    ? "opacity-40"
-                    : ""
-                }`}
-              >
-                <span
-                  className={`block text-sm font-medium text-gray-700 transition-all duration-300 ${
-                    isHovered ? "text-gray-900 font-semibold text-base" : ""
-                  }`}
                 >
-                  {category.name}
-                </span>
-                <span
-                  className={`block text-xs text-gray-500 mt-1 transition-all duration-300 ${
+                  <Icon
+                    className={`w-7 h-7 transition-all duration-300 ${
+                      isHovered ? "scale-110" : ""
+                    }`}
+                  />
+                  {isHovered && (
+                    <div className="absolute inset-0 rounded-full bg-white/20 animate-ping pointer-events-none"></div>
+                  )}
+                  <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-200"></div>
+                </div>
+
+                <div
+                  className={`text-center mt-3 transition-all duration-300 pointer-events-none ${
                     isHovered
-                      ? "text-gray-600 font-medium"
+                      ? "transform -translate-y-1"
                       : isOtherHovered
-                      ? "opacity-0"
+                      ? "opacity-40"
                       : ""
                   }`}
                 >
-                  {category.info.jobs}
-                </span>
-              </div>
+                  <span
+                    className={`block text-sm font-medium text-gray-700 transition-all duration-300 ${
+                      isHovered ? "text-gray-900 font-semibold text-base" : ""
+                    }`}
+                  >
+                    {category.name}
+                  </span>
+                  <span
+                    className={`block text-xs text-gray-500 mt-1 transition-all duration-300 ${
+                      isHovered
+                        ? "text-gray-600 font-medium"
+                        : isOtherHovered
+                        ? "opacity-0"
+                        : ""
+                    }`}
+                  >
+                    {category.info.jobs}
+                  </span>
+                </div>
 
-              {isHovered && (
-                <>
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg whitespace-nowrap z-50 animate-fade-in pointer-events-none">
-                    Click to explore {category.name} opportunities
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
-                  </div>
-                  <div
-                    className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 ${category.color} opacity-30 blur-xl rounded-full -z-10 pointer-events-none`}
-                  ></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-2 border-white/30 rounded-full animate-pulse-ring pointer-events-none"></div>
-                </>
-              )}
-            </div>
-          );
-        })}
+                {isHovered && (
+                  <>
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg whitespace-nowrap z-50 animate-fade-in pointer-events-none">
+                      Click to explore {category.name} opportunities
+                      <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+                    </div>
+                    <div
+                      className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 ${category.color} opacity-30 blur-xl rounded-full -z-10 pointer-events-none`}
+                    ></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-2 border-white/30 rounded-full animate-pulse-ring pointer-events-none"></div>
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
 
         {/* Modal */}
         {selectedCategory && selectedCategoryData && (
@@ -506,6 +508,26 @@ export default function AvaLanding() {
           </div>
         )}
       </section>
+      {/* mobile view */}
+      <div className="grid grid-cols-2 gap-4 px-4 py-4 md:hidden">
+        {categories.map((category) => {
+          const Icon = category.icon;
+          return (
+            <div
+              key={category.id}
+              className="flex flex-row items-center gap-4 bg-white rounded-lg shadow-md p-4"
+            >
+              <div className={`${category.color} text-white p-3 rounded-full`}>
+                <Icon className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold">{category.info.title}</h3>
+                <p className="text-sm text-gray-500">{category.info.jobs}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
