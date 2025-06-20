@@ -509,16 +509,16 @@ export default function AvaLanding() {
         )}
       </section>
       {/* mobile view */}
-      <div className="grid grid-cols-2 gap-4 px-4 py-4 md:hidden">
+      <div className="grid grid-cols-2 gap-4 px-4 py-4 md:hidden ">
         {categories.map((category) => {
           const Icon = category.icon;
           return (
             <div
               key={category.id}
-              className="flex flex-row items-center gap-4 bg-white rounded-lg shadow-md p-4"
+              className="flex flex-row items-center gap-2 bg-white rounded-lg shadow-md p-4 text-wrap"
             >
               <div className={`${category.color} text-white p-3 rounded-full`}>
-                <Icon className="w-6 h-6" />
+                <Icon className="w-4 h-4" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold">{category.info.title}</h3>

@@ -18,12 +18,18 @@ const JobCard = ({ job }) => {
       <p
         className="text-gray-500 text-sm my-4"
         dangerouslySetInnerHTML={{
-          __html: job.description.slice(0, 120)+"...",
+          __html: job.description
+            ? job.description.slice(0, 120) + "..."
+            : "no description available" + "...",
         }}
       ></p>
       <div className="flex gap-4 text-sm">
-        <button className="bg-blue-500 border border-blue-800 text-white rounded p-1">Apply now</button>
-        <button className="bg-gray-50 border text-gray-700 border-gray-200 rounded p-1">Know more</button>
+        <button className="bg-blue-500 border border-blue-800 text-white rounded p-1">
+          Apply now
+        </button>
+        <button className="bg-gray-50 border text-gray-700 border-gray-200 rounded p-1">
+          Know more
+        </button>
       </div>
     </div>
   );
